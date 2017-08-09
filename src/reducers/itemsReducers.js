@@ -22,7 +22,7 @@ var initialState = { items:
 export function itemsReducers(state = initialState, action) {
   switch(action.type) {
     case "GET_ITEMS":
-      return { items: state.items };
+      return state;
 
     default:
       return state;

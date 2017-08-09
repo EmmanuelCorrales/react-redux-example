@@ -39,7 +39,7 @@ class Items extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    items: state.management.items
+    items: state.itemsReducers.items
   }
 }
 
