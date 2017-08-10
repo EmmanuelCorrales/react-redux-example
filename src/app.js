@@ -5,7 +5,7 @@ import { render } from 'react-dom';
 import { applyMiddleware, createStore }  from 'redux';
 import logger from 'redux-logger';
 import Dashboard from './components/dashboard';
-import reducers from './reducers/appReducers';
+import reducers from './reducers/index';
 
 const middleware = applyMiddleware(logger);
 const store = createStore(reducers, middleware);

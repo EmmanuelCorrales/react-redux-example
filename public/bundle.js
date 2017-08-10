@@ -11255,14 +11255,14 @@ var _dashboard = __webpack_require__(231);
 
 var _dashboard2 = _interopRequireDefault(_dashboard);
 
-var _appReducers = __webpack_require__(229);
+var _index = __webpack_require__(232);
 
-var _appReducers2 = _interopRequireDefault(_appReducers);
+var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var middleware = (0, _redux.applyMiddleware)(_reduxLogger2.default);
-var store = (0, _redux.createStore)(_appReducers2.default, middleware);
+var store = (0, _redux.createStore)(_index2.default, middleware);
 
 (0, _reactDom.render)(_react2.default.createElement(
   _reactRedux.Provider,
@@ -24949,25 +24949,7 @@ function mapDispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(NewItem);
 
 /***/ }),
-/* 229 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _redux = __webpack_require__(27);
-
-var _itemsReducers = __webpack_require__(230);
-
-exports.default = (0, _redux.combineReducers)({
-  itemsReducers: _itemsReducers.itemsReducers
-});
-
-/***/ }),
+/* 229 */,
 /* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25070,6 +25052,25 @@ var Dashboard = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Dashboard;
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = __webpack_require__(27);
+
+var _itemsReducers = __webpack_require__(230);
+
+exports.default = (0, _redux.combineReducers)({
+  itemsReducers: _itemsReducers.itemsReducers
+});
 
 /***/ })
 /******/ ]);
