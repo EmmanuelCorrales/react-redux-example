@@ -1,14 +1,7 @@
 'use strict'
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getItems } from '../actions/itemsActions';
 
 class Items extends React.Component {
-
-  componentDidMount() {
-    this.props.getItems();
-  }
 
   render() {
     const items = this.props.items.map(function(item) {
@@ -37,16 +30,4 @@ class Items extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    items: state.itemsReducers.items
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    getItems: getItems
-  }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps) (Items);
+export default Items;

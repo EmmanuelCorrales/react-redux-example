@@ -11251,13 +11251,9 @@ var _reduxLogger = __webpack_require__(225);
 
 var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
-var _items = __webpack_require__(226);
+var _dashboard = __webpack_require__(231);
 
-var _items2 = _interopRequireDefault(_items);
-
-var _newItem = __webpack_require__(228);
-
-var _newItem2 = _interopRequireDefault(_newItem);
+var _dashboard2 = _interopRequireDefault(_dashboard);
 
 var _appReducers = __webpack_require__(229);
 
@@ -11271,7 +11267,7 @@ var store = (0, _redux.createStore)(_appReducers2.default, middleware);
 (0, _reactDom.render)(_react2.default.createElement(
   _reactRedux.Provider,
   { store: store },
-  _react2.default.createElement(_items2.default, null)
+  _react2.default.createElement(_dashboard2.default, null)
 ), document.getElementById('app'));
 
 /***/ }),
@@ -24744,12 +24740,6 @@ var _react = __webpack_require__(20);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(62);
-
-var _redux = __webpack_require__(27);
-
-var _itemsActions = __webpack_require__(227);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24768,11 +24758,6 @@ var Items = function (_React$Component) {
   }
 
   _createClass(Items, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.props.getItems();
-    }
-  }, {
     key: 'render',
     value: function render() {
       var items = this.props.items.map(function (item) {
@@ -24830,19 +24815,7 @@ var Items = function (_React$Component) {
   return Items;
 }(_react2.default.Component);
 
-function mapStateToProps(state) {
-  return {
-    items: state.itemsReducers.items
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return (0, _redux.bindActionCreators)({
-    getItems: _itemsActions.getItems
-  }, dispatch);
-}
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Items);
+exports.default = Items;
 
 /***/ }),
 /* 227 */
@@ -24862,54 +24835,7 @@ function getItems() {
 }
 
 /***/ }),
-/* 228 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(20);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var NewItem = function () {
-  function NewItem() {
-    _classCallCheck(this, NewItem);
-  }
-
-  _createClass(NewItem, [{
-    key: 'render',
-    value: function render() {
-      _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h3',
-          null,
-          'New Question'
-        ),
-        _react2.default.createElement('input', { placeholder: 'Question' }),
-        _react2.default.createElement('input', { placeholder: 'Answer' })
-      );
-    }
-  }]);
-
-  return NewItem;
-}();
-
-exports.default = NewItem;
-
-/***/ }),
+/* 228 */,
 /* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24966,6 +24892,83 @@ function itemsReducers() {
       return state;
   }
 }
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(20);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(62);
+
+var _redux = __webpack_require__(27);
+
+var _itemsActions = __webpack_require__(227);
+
+var _items = __webpack_require__(226);
+
+var _items2 = _interopRequireDefault(_items);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Dashboard = function (_React$Component) {
+  _inherits(Dashboard, _React$Component);
+
+  function Dashboard() {
+    _classCallCheck(this, Dashboard);
+
+    return _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).apply(this, arguments));
+  }
+
+  _createClass(Dashboard, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.getItems();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_items2.default, { items: this.props.items })
+      );
+    }
+  }]);
+
+  return Dashboard;
+}(_react2.default.Component);
+
+function mapStateToProps(state) {
+  return {
+    items: state.itemsReducers.items
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return (0, _redux.bindActionCreators)({
+    getItems: _itemsActions.getItems
+  }, dispatch);
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Dashboard);
 
 /***/ })
 /******/ ]);
