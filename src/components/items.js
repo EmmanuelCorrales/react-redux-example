@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getItems } from '../actions/itemsActions';
+import Item from './item';
 
 class Items extends React.Component {
 
@@ -13,10 +14,7 @@ class Items extends React.Component {
   render() {
     const items = this.props.items.map(function(item) {
       return (
-        <tr key={item.id}>
-          <td>{ item.question }</td>
-          <td>{ item.answer }</td>
-        </tr>
+        <Item key={ item.id } item = { item } />
       )
     });
 
