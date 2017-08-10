@@ -8,3 +8,4 @@ coverage
 es
 *.swp
 *.swo
+public/bundle.js
