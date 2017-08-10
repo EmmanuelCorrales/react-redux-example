@@ -12,6 +12,13 @@ export function createItem(item) {
   }
 }
 
+export function updateItem(item) {
+  return {
+    type: 'UPDATE_ITEM',
+    item: item
+  }
+}
+
 export function destroyItem(id) {
   return {
     type: 'DESTROY_ITEM',
