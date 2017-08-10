@@ -24740,6 +24740,12 @@ var _react = __webpack_require__(20);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(62);
+
+var _redux = __webpack_require__(27);
+
+var _itemsActions = __webpack_require__(227);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24758,6 +24764,11 @@ var Items = function (_React$Component) {
   }
 
   _createClass(Items, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.getItems();
+    }
+  }, {
     key: 'render',
     value: function render() {
       var items = this.props.items.map(function (item) {
@@ -24815,7 +24826,19 @@ var Items = function (_React$Component) {
   return Items;
 }(_react2.default.Component);
 
-exports.default = Items;
+function mapStateToProps(state) {
+  return {
+    items: state.itemsReducers.items
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return (0, _redux.bindActionCreators)({
+    getItems: _itemsActions.getItems
+  }, dispatch);
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Items);
 
 /***/ }),
 /* 227 */
@@ -25006,12 +25029,6 @@ var _react = __webpack_require__(20);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(62);
-
-var _redux = __webpack_require__(27);
-
-var _itemsActions = __webpack_require__(227);
-
 var _items = __webpack_require__(226);
 
 var _items2 = _interopRequireDefault(_items);
@@ -25038,18 +25055,13 @@ var Dashboard = function (_React$Component) {
   }
 
   _createClass(Dashboard, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.props.getItems();
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(_newItem2.default, null),
-        _react2.default.createElement(_items2.default, { items: this.props.items })
+        _react2.default.createElement(_items2.default, null)
       );
     }
   }]);
@@ -25057,19 +25069,7 @@ var Dashboard = function (_React$Component) {
   return Dashboard;
 }(_react2.default.Component);
 
-function mapStateToProps(state) {
-  return {
-    items: state.itemsReducers.items
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return (0, _redux.bindActionCreators)({
-    getItems: _itemsActions.getItems
-  }, dispatch);
-}
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Dashboard);
+exports.default = Dashboard;
 
 /***/ })
 /******/ ]);
