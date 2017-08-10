@@ -24828,14 +24828,104 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getItems = getItems;
+exports.createItem = createItem;
 function getItems() {
   return {
     type: 'GET_ITEMS'
   };
 }
 
+function createItem(item) {
+  return {
+    type: 'CREATE_ITEM',
+    item: item
+  };
+}
+
 /***/ }),
-/* 228 */,
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(20);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(62);
+
+var _redux = __webpack_require__(27);
+
+var _itemsActions = __webpack_require__(227);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NewItem = function (_React$Component) {
+  _inherits(NewItem, _React$Component);
+
+  function NewItem() {
+    _classCallCheck(this, NewItem);
+
+    return _possibleConstructorReturn(this, (NewItem.__proto__ || Object.getPrototypeOf(NewItem)).apply(this, arguments));
+  }
+
+  _createClass(NewItem, [{
+    key: 'createItem',
+    value: function createItem() {
+      var item = {
+        id: 100,
+        question: this.refs.question.value,
+        answer: this.refs.answer.value
+      };
+      this.props.createItem(item);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h3',
+          null,
+          'New Question'
+        ),
+        _react2.default.createElement('input', { ref: 'question', placeholder: 'Question' }),
+        _react2.default.createElement('input', { ref: 'answer', placeholder: 'Answer' }),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.createItem.bind(this) },
+          'Add'
+        )
+      );
+    }
+  }]);
+
+  return NewItem;
+}(_react2.default.Component);
+
+function mapDispatchToProps(dispatch) {
+  return (0, _redux.bindActionCreators)({
+    createItem: _itemsActions.createItem
+  }, dispatch);
+}
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(NewItem);
+
+/***/ }),
 /* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24865,6 +24955,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.itemsReducers = itemsReducers;
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var initialState = { items: [{
     id: 1,
     question: 'Who are you?',
@@ -24887,6 +24980,9 @@ function itemsReducers() {
   switch (action.type) {
     case "GET_ITEMS":
       return state;
+
+    case 'CREATE_ITEM':
+      return { items: [].concat(_toConsumableArray(state.items), [action.item]) };
 
     default:
       return state;
@@ -24920,6 +25016,10 @@ var _items = __webpack_require__(226);
 
 var _items2 = _interopRequireDefault(_items);
 
+var _newItem = __webpack_require__(228);
+
+var _newItem2 = _interopRequireDefault(_newItem);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24948,6 +25048,7 @@ var Dashboard = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(_newItem2.default, null),
         _react2.default.createElement(_items2.default, { items: this.props.items })
       );
     }

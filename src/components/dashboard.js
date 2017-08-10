@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getItems } from '../actions/itemsActions';
 import Items from './items';
+import NewItem from './newItem';
 
 class Dashboard extends React.Component {
 
@@ -14,6 +15,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
+        <NewItem/>
         <Items items={this.props.items} />
       </div>
     )

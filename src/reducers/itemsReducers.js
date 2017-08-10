@@ -24,6 +24,9 @@ export function itemsReducers(state = initialState, action) {
     case "GET_ITEMS":
       return state;
 
+    case 'CREATE_ITEM':
+      return { items: [...state.items, action.item] };
+
     default:
       return state;
   }
