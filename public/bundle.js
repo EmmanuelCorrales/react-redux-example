@@ -24843,6 +24843,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getItems = getItems;
 exports.createItem = createItem;
+exports.destroyItem = destroyItem;
 function getItems() {
   return {
     type: 'GET_ITEMS'
@@ -24853,6 +24854,13 @@ function createItem(item) {
   return {
     type: 'CREATE_ITEM',
     item: item
+  };
+}
+
+function destroyItem(id) {
+  return {
+    type: 'DESTROY_ITEM',
+    id: id
   };
 }
 
@@ -24980,6 +24988,13 @@ function itemsReducers() {
     case 'CREATE_ITEM':
       return { items: [].concat(_toConsumableArray(state.items), [action.item]) };
 
+    case 'DESTROY_ITEM':
+      var items = state.items;
+      var index = items.findIndex(function (item) {
+        return item.id == action.id;
+      });
+      return { items: [].concat(_toConsumableArray(items.slice(0, index)), _toConsumableArray(items.slice(index + 1))) };
+
     default:
       return state;
   }
@@ -25080,6 +25095,12 @@ var _react = __webpack_require__(20);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(62);
+
+var _redux = __webpack_require__(27);
+
+var _itemsActions = __webpack_require__(227);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25098,6 +25119,11 @@ var Item = function (_React$Component) {
   }
 
   _createClass(Item, [{
+    key: 'destroyItem',
+    value: function destroyItem() {
+      this.props.destroyItem(this.props.item.id);
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -25112,6 +25138,15 @@ var Item = function (_React$Component) {
           'td',
           null,
           this.props.item.answer
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(
+            'button',
+            { onClick: this.destroyItem.bind(this) },
+            'Delete'
+          )
         )
       );
     }
@@ -25120,7 +25155,19 @@ var Item = function (_React$Component) {
   return Item;
 }(_react2.default.Component);
 
-exports.default = Item;
+function mapStateToProps(state) {
+  return {
+    items: state.itemsReducers.items
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return (0, _redux.bindActionCreators)({
+    destroyItem: _itemsActions.destroyItem
+  }, dispatch);
+}
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Item);
 
 /***/ })
 /******/ ]);

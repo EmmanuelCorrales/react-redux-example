@@ -27,6 +27,15 @@ export function itemsReducers(state = initialState, action) {
     case 'CREATE_ITEM':
       return { items: [...state.items, action.item] };
 
+    case 'DESTROY_ITEM':
+      const items = state.items;
+      const index = items.findIndex(
+        function(item) {
+          return item.id == action.id;
+        }
+      );
+      return { items: [...items.slice(0, index), ...items.slice(index + 1) ] };
+
     default:
       return state;
   }

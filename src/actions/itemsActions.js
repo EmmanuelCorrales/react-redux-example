@@ -11,3 +11,10 @@ export function createItem(item) {
     item: item
   }
 }
+
+export function destroyItem(id) {
+  return {
+    type: 'DESTROY_ITEM',
+    id: id
+  }
+}
