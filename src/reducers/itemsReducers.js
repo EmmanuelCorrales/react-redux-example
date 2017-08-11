@@ -1,33 +1,16 @@
 'use strict'
-var initialState = { items:
-  [
-    {
-      id: 1,
-      question: 'Who are you?',
-      answer: 'Emmanuel Corrales'
-    },
-    {
-      id: 2,
-      question: 'What country are you from?',
-      answer: 'Philippines'
-    },
-    {
-      id: 3,
-      question: 'What is the color of the White House?',
-      answer: 'White'
-    }
-  ]
-};
+const initialState = { items:[]};
 
 export function itemsReducers(state = initialState, action) {
   switch(action.type) {
     case "GET_ITEMS":
-      return state;
+      return { items: action.items };
 
     case 'CREATE_ITEM':
       return { items: [...state.items, action.item] };
 
     case 'DESTROY_ITEM':
+      console.log(action.id);
       const items = state.items;
       const index = items.findIndex(
         function(item) {
